@@ -1,0 +1,9 @@
+<h2>🛠️ BAB 3<br> MANAJEMEN PROYEK &amp; WORKFLOW</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Dipelajari pada: 12 Juni 2026 | Kategori: #Git #Monorepo #Vercel</p>
+
+<h3>Metode Monorepo (Satu Repositori untuk Banyak Web)</h3>
+<ul>
+  <li><strong>Masalah:</strong> Membuat satu repositori GitHub baru untuk setiap satu file latihan kecil sangat tidak efisien dan mengotori akun GitHub jika bekerja via HP.</li>
+  <li><strong>Solusi Monorepo:</strong> Membuat satu repositori besar di GitHub (contoh: <code>belajar-web-fatahilah</code>) yang di dalamnya berisi banyak sub-folder proyek mandiri.</li>
+  <li><strong>Pengaturan Root Directory di Vercel:</strong> Saat melakukan <em>import</em> repositori yang sama ke Vercel untuk proyek baru, kita cukup mengubah target <strong>Root Directory</strong> ke nama sub-folder yang spesifik (misal: <code>01-dashboard-it</code>). Vercel akan otomatis membaca file <code>index.html</code> di dalam folder tersebut dan memberikan URL unik yang berbeda.</li>
+</ul>

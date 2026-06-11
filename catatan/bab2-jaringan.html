@@ -1,0 +1,18 @@
+<h2>🌐 BAB 2<br>JARINGAN &amp; INFRASTRUKTUR<br> (NETWORKING INTEGRATION)</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Dipelajari pada: 12 Juni 2026 | Kategori: #Networking #DNS #TLS</p>
+
+<p>Menghubungkan kode front-end dengan teori infrastruktur jaringan internet (ilmu dasar TKJ):</p>
+
+<h3>1. Sistem Penamaan Domain (DNS)</h3>
+<ul>
+  <li><strong>Fungsi:</strong> Menerjemahkan alamat teks yang mudah diingat manusia menjadi IP Address yang dipahami oleh mesin/router.</li>
+  <li><strong>A Record (Address):</strong> Mengarahkan domain utama (misal: <code>@</code> atau <code>fatahilah.com</code>) ke alamat IPv4 spesifik milik server <em>hosting</em> (Vercel: <code>76.76.21.21</code>).</li>
+  <li><strong>CNAME Record (Canonical Name):</strong> Membuat nama alias atau turunan. Mengarahkan subdomain (misal: <code>www</code>) ke nama domain induknya (<code>cname.vercel-dns.com</code>), bukan ke IP langsung.</li>
+</ul>
+
+<h3>2. Protokol Transport Aman (HTTPS &amp; Handshake)</h3>
+<ul>
+  <li><strong>TCP Three-Way Handshake:</strong> Koneksi andal (<em>reliable</em>) di Layer 4 (Transport) sebelum pengiriman data, melalui proses pertukaran paket <strong>SYN</strong> (Synchronize), <strong>SYN-ACK</strong> (Acknowledge), dan <strong>ACK</strong>.</li>
+  <li><strong>TLS/SSL Handshake:</strong> Proses enkripsi di atas layer transport. HP pengguna dan server Vercel saling bertukar sertifikat kriptografi untuk mengacak paket data HTML/CSS/JS yang dikirim.</li>
+  <li><strong>Tujuan Keamanan:</strong> Melindungi data website dari serangan penyadapan (<em>sniffing</em>) di jaringan publik (seperti Wi-Fi gratis).</li>
+</ul>

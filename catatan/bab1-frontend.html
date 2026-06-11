@@ -1,0 +1,49 @@
+<h2>📑 BAB 1<br>FRONT-END DEVELOPMENT<br>(PONDASI KODE)</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Dipelajari pada: 12 Juni 2026 | Kategori: #WebDev #HTML #CSS #JavaScript</p>
+
+<h3>1. HTML5 (Semantic Markup)</h3>
+<p><strong>Definisi:</strong> Penyusunan struktur halaman web menggunakan elemen yang memiliki arti logis, bukan sekadar menggunakan tag generik seperti <code>&lt;div&gt;</code>.</p>
+<p><strong>Fungsi:</strong> Mempermudah mesin pencari (SEO) mengenali struktur konten dan mempermudah pemeliharaan kode (<em>maintainability</em>) dalam jangka panjang.</p>
+<p><strong>Elemen yang Dikuasai:</strong></p>
+<ul>
+  <li><code>&lt;header&gt;</code>: Bagian kepala atau pengantar halaman (judul dashboard/nama profil).</li>
+  <li><code>&lt;main&gt;</code>: Area konten utama yang menjadi pusat informasi halaman.</li>
+  <li><code>&lt;section&gt;</code>: Pembagi konten menjadi beberapa kluster/bagian logis (misal: bagian navigasi tombol dan bagian penampilan materi).</li>
+  <li>Atribut <code>id</code>: Penanda unik pada elemen HTML agar bisa ditembak dengan akurat oleh CSS dan JavaScript.</li>
+</ul>
+
+<h3>2. CSS3 (Modern Styling &amp; Responsive Design)</h3>
+<p><strong>CSS Custom Properties (CSS Variables):</strong></p>
+<ul>
+  <li><strong>Sintaks:</strong> Ditulis di dalam lingkup global <code>:root { --nama-variabel: nilai; }</code> dan dipanggil menggunakan <code>var(--nama-variabel)</code>.</li>
+  <li><strong>Keuntungan:</strong> Efisiensi tinggi. Menghindari penulisan kode warna atau ukuran yang sama secara berulang (<em>hardcode</em>). Cukup mengubah satu baris di <code>:root</code>, maka seluruh tampilan website akan berubah secara instan.</li>
+</ul>
+<p><strong>Mobile-First &amp; Media Queries:</strong></p>
+<ul>
+  <li><strong>Pendekatan:</strong> Mendesain tampilan dasar yang dioptimalkan untuk layar HP terlebih dahulu.</li>
+  <li><strong>Sintaks:</strong> <code>@media (min-width: 768px) { ... }</code></li>
+  <li><strong>Logika:</strong> Instruksi jika-maka (<em>if-statement</em>) pada browser. Jika lebar layar perangkat minimal 768px (tablet/laptop), maka jalankan aturan CSS di dalamnya (seperti pembatasan <code>max-width</code> dan pemosisian ketengah dengan <code>margin: 0 auto</code>). Jika di bawah itu (layar HP), abaikan.</li>
+</ul>
+<p><strong>Troubleshooting (Pembersihan Inline Style):</strong></p>
+<p>Menghindari penulisan atribut <code>style="..."</code> langsung di dalam tag HTML karena memiliki prioritas lebih tinggi (<em>specificity</em>) daripada file CSS eksternal/internal. Kemarin sempat merusak kontras warna (teks putih menabrak latar abu-abu terang), dan berhasil diatasi dengan menyerahkan kendali visual sepenuhnya ke blok <code>&lt;style&gt;</code> utama.</p>
+
+<h3>3. JavaScript Vanilla (Logika &amp; Dinamisasi DOM)</h3>
+<ul>
+  <li><strong>DOM Selection:</strong> Menggunakan <code>document.getElementById('id-elemen')</code> untuk menghubungkan objek HTML ke dalam memori JavaScript.</li>
+  <li><strong>Event Handling:</strong> Menggunakan <code>.addEventListener('click', function() { ... })</code> untuk mendengarkan dan merespons ketukan pengguna pada layar HP secara <em>real-time</em>.</li>
+  <li><strong>Manipulasi Konten Dinamis:</strong>
+    <ul>
+      <li><code>textContent</code>: Digunakan untuk menyuntikkan teks murni dengan aman tanpa risiko celah keamanan.</li>
+      <li><code>innerHTML</code>: Digunakan ketika teks yang disuntikkan mengandung tag HTML baru (seperti <code>&lt;br&gt;</code> untuk baris baru atau <code>&lt;strong&gt;</code> untuk cetak tebal).</li>
+    </ul>
+  </li>
+  <li><strong>Arsitektur Berbasis Data (Data-Driven Content):</strong>
+    <ul>
+      <li><strong>Konsep:</strong> Memisahkan konten/data dari struktur tampilan. Konten disimpan di dalam struktur data <strong>Array of Objects</strong> di JavaScript.</li>
+      <li><strong>Sintaks Utama:</strong> <code>daftarMateri.forEach(function(materi) { ... })</code> untuk melakukan perulangan otomatis pada data.</li>
+      <li><code>document.createElement('button')</code> untuk menciptakan elemen tombol baru langsung dari memori JS.</li>
+      <li><code>appendChild()</code> untuk memasukkan tombol hasil kreasi JS ke dalam wadah HTML secara otomatis.</li>
+      <li><strong>Keuntungan:</strong> Jika ingin menambah materi baru, tidak perlu menyentuh struktur HTML lagi, cukup tambahkan satu baris objek data baru di JavaScript.</li>
+    </ul>
+  </li>
+</ul>
