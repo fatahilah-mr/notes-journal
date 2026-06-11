@@ -45,25 +45,22 @@ Jika ingin menguji atau mengembangkan website ini di komputer/HP Anda:
 
 1. **Clone repositori**  
    ```bash
-   git clone https://github.com/username/field-notes-journal.git
-   cd field-notes-journal
-  ```
+   git clone https://github.com/username/notes-journal.git
+   cd notes-journal
 
-2. Buat folder konten contoh (jika belum ada)
-   · Tambahkan file .html di catatan/
-   · Tambahkan file .json di proyek/
+2. **Buat folder konten contoh (jika belum ada)**
+  - Tambahkan file .html di catatan/
+  - Tambahkan file .json di proyek/
    
         (lihat bagian Cara Menambah Catatan/Proyek di bawah)
-3. Generate file JSON statis (wajib agar frontend tidak error)
-      Pastikan Node.js terinstal, lalu jalankan:
-   ```bash
-   node build.js
-   ```
-
-   Perintah ini akan membuat daftar-catatan.json dan daftar-proyek.json di root.
-4. Buka website
-   · Buka index.html dengan browser (cukup klik dua kali).
-   · Atau gunakan Live Server / ekstensi server lokal untuk pengalaman lebih baik.
+3. **Generate file JSON statis (wajib agar frontend tidak error)**
+  - Pastikan Node.js terinstal, lalu jalankan:
+     ```bash
+     node build.js
+  - Perintah ini akan membuat daftar-catatan.json dan daftar-proyek.json di root.
+4. **Buka website**
+  - Buka index.html dengan browser (cukup klik dua kali).
+  - Atau gunakan Live Server / ekstensi server lokal untuk pengalaman lebih baik.
 
 ---
 
