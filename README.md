@@ -3,7 +3,7 @@
 
 Ini adalah repositori kode sumber untuk website jurnal belajar pribadi saya di bidang **IT Networking, Web Development, dan System Administration**. Website ini mencatat praktikum harian, konfigurasi jaringan, eksperimen CSS/JS, serta menyimpan tautan ke proyek web latihan eksternal. Dibangun sebagai *personal branding* yang bersih, unik, dan fungsional – cocok untuk rekan sejawat, komunitas developer, maupun rekruter.
 
-> 🔗 Website live: [field-notes-journal.vercel.app](https://field-notes-journal.vercel.app)
+> 🔗 Website live: [field-notes-journal.vercel.app](https://fatah-journal.vercel.app/)
 
 ---
 
