@@ -116,17 +116,17 @@ Vercel akan menjalankan build.js otomatis, menghasilkan file JSON, dan mendeploy
 
 🛠️ Teknologi yang Digunakan
 
-· HTML5 & CSS3 – Struktur semantik, CSS Grid & Flexbox (tanpa framework)
-· JavaScript (Vanilla ES6+) – Fetch API, URL routing, DOM manipulation
-· Node.js – Hanya untuk build script (tidak digunakan di frontend)
-· Google Fonts – Special Elite (judul) dan Inter (body) – diperbolehkan
-· Vercel – Hosting + serverless build otomatis
+- HTML5 & CSS3 – Struktur semantik, CSS Grid & Flexbox (tanpa framework)
+- JavaScript (Vanilla ES6+) – Fetch API, URL routing, DOM manipulation
+- Node.js – Hanya untuk build script (tidak digunakan di frontend)
+- Google Fonts – Special Elite (judul) dan Inter (body) – diperbolehkan
++ Vercel – Hosting + serverless build otomatis
 
 ---
 
 📄 Lisensi & Hak Cipta
 
-© 2026 [Nama Anda]. Dibangun untuk keperluan portofolio dan dokumentasi belajar pribadi.
+© 2026 Fatahilah Miftahul Rahman. Dibangun untuk keperluan portofolio dan dokumentasi belajar pribadi.
 Silakan gunakan kode ini sebagai referensi, namun jangan lupa untuk memberikan atribusi jika menyebarkan ulang.
 
 ---
