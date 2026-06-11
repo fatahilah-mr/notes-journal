@@ -136,6 +136,7 @@ Silakan gunakan kode ini sebagai referensi, namun jangan lupa untuk memberikan a
 Saya seorang teknisi IT yang terus belajar Networking, Web Development, dan otomatisasi sistem. Jurnal ini adalah bukti nyata perjalanan saya – dari konfigurasi Cisco hingga membuat website tanpa framework.
 
 Terima kasih sudah berkunjung!
+
 – Fatahilah Miftahul Rahman
 
 ```
