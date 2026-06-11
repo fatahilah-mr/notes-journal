@@ -1,6 +1,0 @@
-{
-  "judul": "Kalkulator Sederhana dengan JavaScript Vanilla",
-  "deskripsi": "Aplikasi kalkulator dasar (tambah, kurang, kali, bagi) dengan event listener dan eval yang aman.",
-  "link": "https://example-kalkulator.netlify.app",
-  "tanggal": "2026-06-11"
-}
