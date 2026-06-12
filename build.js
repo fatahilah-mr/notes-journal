@@ -25,6 +25,7 @@ function extractDateFromHtml(filePath) {
   return stat.mtime;
 }
 
+
 // 1. Scan folder catatan/
 const catatanDir = path.join(__dirname, 'catatan');
 let daftarCatatan = [];
