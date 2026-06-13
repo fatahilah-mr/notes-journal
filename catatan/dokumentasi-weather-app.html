@@ -1,0 +1,80 @@
+<h2>☀️ Dokumentasi Pembuatan Weather App (Glassmorphism + Dynamic Background)</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Diselesaikan pada: 13 Juni 2026 | Versi: 1.0 (Must-Have + Nice-to-Have dinamis & desktop responsif)</p>
+
+<h3>1. Latar Belakang</h3>
+<p>Aplikasi cuaca berbasis web statis dengan desain premium ala iOS (<strong>glassmorphism</strong>) yang ringan, cepat, dan bebas iklan. Dibangun sebagai proyek belajar mandiri dari HP menggunakan editor kode seluler (Acode/Spck) dan deployment ke Vercel. Seluruh kode menggunakan <strong>Vanilla HTML, CSS, JavaScript</strong> tanpa framework atau library eksternal.</p>
+
+<h3>💡 Kolaborasi Manusia + AI</h3>
+<p>Proyek ini dikerjakan berdasarkan <strong>Product Requirement Document (PRD)</strong> dan <strong>PLAN eksekusi step-by-step</strong> yang disusun sebagai <em>Lead Developer & Content Architect</em>. Saya bertanggung jawab atas arsitektur sistem, desain UI/UX, konfigurasi API, debugging, serta deployment. AI (LLM) bertindak sebagai <em>executor</em> yang menerjemahkan spesifikasi teknis menjadi kode HTML, CSS, dan JS murni secara bertahap, memastikan setiap step diuji dan divalidasi sebelum melanjutkan ke tahap berikutnya.</p>
+
+<h3>2. Arsitektur & Struktur Folder</h3>
+<pre><code>weather-app/
+├── index.html          (struktur semantik SPA)
+├── style.css           (glassmorphism, CSS variables, responsive mobile-first & desktop)
+├── app.js              (fetch API, konversi waktu, filter data, DOM rendering, event listeners, GPS, dynamic background)
+└── (tidak ada dependency lain – murni vanilla)
+</code></pre>
+
+<h3>3. Fitur Utama (Sesuai PRD + Fase 2)</h3>
+<ul>
+  <li><strong>Header info pusat</strong> – nama kota, suhu Celsius, deskripsi, kelembapan & angin.</li>
+  <li><strong>Pencarian tersembunyi</strong> – ikon kaca pembesar dengan animasi slide-down, input di-trim otomatis, error handling jelas.</li>
+  <li><strong>Hourly forecast (24 jam / 3 jam)</strong> – horizontal scroll tanpa scrollbar, menampilkan jam, ikon cuaca (fallback jika gagal load), dan suhu.</li>
+  <li><strong>5-day forecast</strong> – filter data jam terdekat 12:00 (metode A), label “Hari ini” / “Besok” / nama hari, daftar vertikal di mobile dan grid 2 kolom di desktop.</li>
+  <li><strong>Background dinamis</strong> – gradien berubah otomatis sesuai kondisi cuaca (Clear, Clouds, Rain, dll) dengan transisi halus.</li>
+  <li><strong>GPS (Geolocation)</strong> – deteksi lokasi pengguna dan tampilkan cuaca setempat (nice-to-have terintegrasi penuh).</li>
+  <li><strong>Loading & error state</strong> – spinner CSS murni, pesan error informatif, tombol retry.</li>
+  <li><strong>Responsif mobile-first</strong> – media queries untuk tablet dan desktop (layout daily menjadi grid 2 kolom, ukuran card membesar).</li>
+  <li><strong>Zero library & zero framework</strong> – semua kode ditulis manual, fetch API, Promise.all, manipulasi DOM murni.</li>
+</ul>
+
+<h3>4. Alur Kerja Pengembangan (Step-by-Step sesuai PLAN)</h3>
+<ol>
+  <li><strong>Step 1 – HTML semantik</strong>: buat struktur dengan <code>header</code>, <code>main#current-weather</code>, <code>section#hourly-forecast</code>, <code>section#daily-forecast</code>, loading/error overlay, tombol GPS.</li>
+  <li><strong>Step 2 – CSS glassmorphism</strong>: variabel CSS, efek blur, horizontal scroll tanpa scrollbar, spinner, utility <code>.hidden</code>, background gradien sementara.</li>
+  <li><strong>Step 3 – JavaScript API & fetch</strong>: <code>getWeatherData(city)</code> dengan <code>Promise.all</code> untuk <code>/weather</code> dan <code>/forecast</code>, handling error, loading state.</li>
+  <li><strong>Step 4 – Konversi waktu & filter</strong>: fungsi <code>formatTime()</code>, <code>formatDay()</code>, <code>formatDayLabel()</code>, <code>filterDailyForecast</code> (metode A: ambil jam terdekat 12:00), <code>filterHourlyForecast</code> (8 data pertama).</li>
+  <li><strong>Step 5 – DOM rendering</strong>: <code>updateCurrentWeather()</code>, <code>updateHourly()</code>, <code>updateDaily()</code>, <code>renderWeatherData()</code>, fallback ikon <code>.png</code> dengan <code>onerror</code>.</li>
+  <li><strong>Step 6 – Interaktivitas & final</strong>: event listener toggle search, submit pencarian dengan trim, retry, GPS, load data awal “Jakarta”. <strong>Plus tambahan dynamic background</strong> dan <strong>desktop responsif</strong> (grid daily, ukuran card).</li>
+</ol>
+
+<h3>5. Teknis Pengambilan Data & Filtering</h3>
+<ul>
+  <li><strong>API:</strong> OpenWeatherMap (gratis) – endpoint <code>/weather</code> (current) dan <code>/forecast</code> (5 hari, per 3 jam).</li>
+  <li><strong>Konversi UNIX:</strong> <code>new Date(unix * 1000)</code> untuk waktu lokal.</li>
+  <li><strong>Filter 5 hari:</strong> kelompokkan berdasarkan <code>dateKey (YYYY-MM-DD)</code>, pilih data dengan <code>|hour - 12|</code> terkecil, urutkan, batasi 5.</li>
+  <li><strong>Filter hourly:</strong> ambil 8 data pertama (24 jam ke depan).</li>
+  <li><strong>Ikon:</strong> URL <code>https://openweathermap.org/img/wn/${iconCode}.png</code> + atribut <code>onerror</code> ke ikon default <code>01d.png</code>.</li>
+</ul>
+
+<h3>6. Desain Visual (CSS)</h3>
+<p>Menerapkan <strong>glassmorphism</strong> dengan <code>backdrop-filter: blur()</code>, border semi-transparan, dan box-shadow. Background <code>body</code> diubah dinamis oleh JavaScript berdasarkan <code>weather[0].main</code>. Efek transisi <code>background 0.5s ease</code>. Di desktop (<code>@media (min-width: 1024px)</code>), <code>#daily-list</code> berubah menjadi <code>grid-template-columns: repeat(2, 1fr)</code> dan ukuran card hourly membesar untuk kenyamanan layar lebar.</p>
+
+<h3>7. Dynamic Background (Fase 2 – Terintegrasi Penuh)</h3>
+<p>Fungsi <code>updateDynamicBackground(weatherMain)</code> memetakan kondisi cuaca seperti <code>Clear</code>, <code>Clouds</code>, <code>Rain</code>, <code>Thunderstorm</code>, <code>Snow</code>, dll ke gradien CSS. Dipanggil dalam <code>renderWeatherData()</code> sehingga setiap kali kota berubah (pencarian, GPS, atau load awal), background menyesuaikan secara otomatis.</p>
+
+<h3>8. Deployment ke Vercel</h3>
+<ul>
+  <li>Repository dihubungkan ke Vercel (GitHub).</li>
+  <li>Build Command: <code># tidak ada build – cukup static files</code> (tidak perlu <code>npm run build</code> karena proyek murni statis).</li>
+  <li>Output Directory: <code>.</code></li>
+  <li>Setiap <code>git push</code> ke branch utama akan memicu redeploy otomatis.</li>
+  <li>Pastikan environment variable <code>API_KEY</code> <strong>tidak</strong> disimpan di Vercel (karena frontend statis, API key tetap terlihat di browser – ini aman untuk proyek belajar karena OpenWeatherMap gratis dan key dibatasi). Alternatif untuk produksi: gunakan backend proxy, tapi di luar scope.</li>
+</ul>
+
+<h3>9. Hal yang Dipelajari & Kendala yang Diatasi</h3>
+<ul>
+  <li><strong>Penyelarasan nama file JS</strong> – awalnya <code>app.js</code> vs <code>script.js</code> menyebabkan aplikasi tidak berjalan. Diperbaiki dengan konsistensi referensi di <code>index.html</code>.</li>
+  <li><strong>Ikon gagal load</strong> – karena ekstensi <code>@2x.png</code> kadang lambat; diganti dengan <code>.png</code> dan menambahkan <code>onerror</code> fallback.</li>
+  <li><strong>Background tidak dinamis</strong> – karena fitur belum diimplementasikan. Ditambahkan fungsi mapping dan dipanggil di <code>renderWeatherData</code>.</li>
+  <li><strong>Input spasi berlebih</strong> – diatasi dengan <code>.trim()</code> baik di <code>handleCitySearch</code> maupun <code>getWeatherData</code>.</li>
+  <li><strong>Horizontal scroll di mobile</strong> – menggunakan <code>overflow-x: auto</code> dan menyembunyikan scrollbar dengan pseudo-element.</li>
+  <li><strong>Paginasi tidak diperlukan</strong> – karena data terbatas (8 hourly + 5 daily), namun struktur siap untuk pengembangan lebih lanjut.</li>
+  <li><strong>GPS meminta izin dan gagal di HTTP (localhost)</strong> – berfungsi baik di lingkungan HTTPS (Vercel) atau localhost dengan izin.</li>
+</ul>
+
+<h3>10. Lisensi & Atribusi</h3>
+<p>Kode ini ditulis berdasarkan PRD dan PLAN yang disusun secara mandiri. Dikembangkan secara kolaboratif antara <strong>Fatahilah Miftahul Rahman</strong> (Lead Developer & Content Architect) dan AI (penerjemah PRD ke kode). Weather App menggunakan data dari <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a> dan ikon dari layanan mereka.</p>
+
+<p><strong>– Website live:</strong> <a href="https://weather-app-fatahilah.vercel.app/" target="_blank">https://weather-app-fatahilah.vercel.app/</a><br>
+<strong>– Repositori GitHub:</strong> <a href="https://github.com/fatahilah-tkj/learn-to-make-a-website/tree/main/02-weather-app" target="_blank">https://github.com/fatahilah-tkj/learn-to-make-a-website/tree/main/02-weather-app</a></p>
