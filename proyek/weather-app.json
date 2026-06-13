@@ -1,0 +1,6 @@
+{
+  "judul": "Weather App — Glassmorphism + Dynamic Background",
+  "deskripsi": "Aplikasi cuaca modern dengan antarmuka glassmorphism ala iOS, menampilkan suhu terkini, prakiraan per 3 jam (horizontal scroll), ramalan 5 hari ke depan, pencarian kota dengan auto-trim, deteksi lokasi (GPS), background dinamis yang berubah sesuai kondisi cuaca, serta desain responsif mobile-first yang optimal di desktop. Dibangun dengan HTML, CSS, JavaScript vanilla tanpa framework.",
+  "link": "https://weather-app-fatahilah.vercel.app/",
+  "tanggal": "2026-06-13"
+}
