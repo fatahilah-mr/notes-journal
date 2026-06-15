@@ -1,0 +1,89 @@
+<h2>Rancang Bangun Jaringan Kantor 3 Lantai<br>(Cisco)</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Dipelajari pada: 4 Juni 2026 | Kategori: #Cisco #Networking #OSPF #VLAN</p>
+
+<h3>📌 Deskripsi Proyek</h3>
+<p>Simulasi arsitektur jaringan skala besar menggunakan <strong>Cisco Packet Tracer</strong> dengan segmentasi inter-VLAN routing pada multilayer switch. Infrastruktur inti dikonfigurasi menggunakan protokol routing dinamis <strong>Multi-Area OSPF</strong> untuk menyediakan jalur komunikasi redundan, efisien, dan fault tolerance. Proyek ini juga mengintegrasikan distribusi IP dinamis terpusat serta kebijakan keamanan lalu lintas data antar-departemen.</p>
+
+<blockquote>
+<p><strong>📌 Dokumentasi Hak Cipta:</strong><br>
+Seluruh konfigurasi, skema pengalamatan IP, dan log pengujian laboratorium ini diverifikasi secara nyata pada simulator Cisco Packet Tracer oleh <strong>Fatahilah Miftahul Rahman</strong>.</p>
+<p><em>Dilarang keras memodifikasi atau menyalin tanpa izin.</em></p>
+</blockquote>
+
+<h3>🛠️ Ringkasan Teknologi &amp; Fitur</h3>
+<ul>
+  <li><strong>Perangkat lunak:</strong> Cisco Packet Tracer</li>
+  <li><strong>Routing dinamis:</strong> Multi-Area OSPF (Area 0 &amp; Area 1)</li>
+  <li><strong>Segmentasi jaringan:</strong> Inter-VLAN Routing (VLAN 10, 20, 30) pada Multilayer Switch (MLS)</li>
+  <li><strong>Layanan IP:</strong> DHCP Server terpusat</li>
+  <li><strong>Keamanan jaringan:</strong> Standard &amp; Extended Access Control List (ACL)</li>
+</ul>
+
+<h3>🗺️ Topologi Jaringan</h3>
+<img src="https://cdn.jsdelivr.net/gh/fatahilah-tkj/portofolio@main/assets/lab-archive/cisco/Topologi-Cisco-PT-01.webp" alt="Topologi-Cisco-PT-01.png – arsitektur jaringan 3 lantai" />
+
+<h3>📊 Skema Pengalamatan IP (Addressing Table)</h3>
+<table border="1" cellpadding="4" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr bgcolor="#e3ebf5">
+      <th>Perangkat</th><th>Interface</th><th>VLAN</th><th>IP Address</th><th>Subnet Mask</th><th>Area OSPF</th><th>Keterangan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Core-MLS</td><td>Sub-int / Sw</td><td>VLAN 10</td><td>192.168.10.1</td><td>255.255.255.0</td><td>Area 0</td><td>Lantai 1</td></tr>
+    <tr><td>Core-MLS</td><td>Sub-int / Sw</td><td>VLAN 20</td><td>192.168.20.1</td><td>255.255.255.0</td><td>Area 0</td><td>Lantai 2</td></tr>
+    <tr><td>Core-MLS</td><td>Sub-int / Sw</td><td>VLAN 30</td><td>192.168.30.1</td><td>255.255.255.0</td><td>Area 0</td><td>Lantai 3</td></tr>
+    <tr><td>Router-A</td><td>Gig0/0</td><td>-</td><td>10.10.10.1</td><td>255.255.255.252</td><td>Area 0</td><td></td></tr>
+    <tr><td>Router-B</td><td>Gig0/1</td><td>-</td><td>10.10.10.2</td><td>255.255.255.252</td><td>Area 1</td><td></td></tr>
+  </tbody>
+</table>
+
+<h3>💻 Langkah Konfigurasi Utama (Snippet)</h3>
+<h4>1. Konfigurasi Inter-VLAN &amp; DHCP Relay pada Multilayer Switch</h4>
+<pre><code>vlan 10
+ name Lantai-1
+vlan 20
+ name Lantai-2
+vlan 30
+ name Lantai-3
+exit
+
+ip routing
+
+interface vlan 10
+ ip address 192.168.10.1 255.255.255.0
+interface vlan 20
+ ip address 192.168.20.1 255.255.255.0
+interface vlan 30
+ ip address 192.168.30.1 255.255.255.0
+end</code></pre>
+
+<h4>2. Aktivasi Protokol Routing Dinamis Multi-Area OSPF</h4>
+<pre><code>router ospf 1
+ router-id 1.1.1.1
+ network 192.168.10.0 0.0.0.255 area 0
+ network 192.168.20.0 0.0.0.255 area 0
+ network 10.10.10.0 0.0.0.3 area 0
+ network 192.168.30.0 0.0.0.255 area 1
+exit</code></pre>
+
+<h3>🧪 Hasil Pengujian (Verification)</h3>
+<ol>
+  <li><strong>Ping Test:</strong> Konektivitas antar-VLAN sukses (Success rate 100%).</li>
+  <li><strong>OSPF Neighbor:</strong> <code>show ip ospf neighbor</code> menunjukkan status FULL/DR dan FULL/BDR.</li>
+  <li><strong>Routing Table:</strong> <code>show ip route</code> menampilkan kode O (OSPF) dan O IA (Inter-Area).</li>
+</ol>
+
+<h3>🔍 Catatan Troubleshooting &amp; Solusi</h3>
+<h4>1. Distribusi IP DHCP pada Klien di Lantai 3</h4>
+<ul>
+  <li><strong>Kendala:</strong> Klien VLAN 30 tidak mendapat IP dari DHCP server (APIPA).</li>
+  <li><strong>Analisis:</strong> DHCP request bersifat broadcast, tidak melewati batas subnet/VLAN.</li>
+  <li><strong>Solusi:</strong> Konfigurasi DHCP Relay Agent pada MLS di interface VLAN 30 dengan perintah <code>ip helper-address [IP_DHCP_Server]</code>.</li>
+</ul>
+<h4>2. OSPF Neighbor Status Stuck di EXSTART/EXCHANGE</h4>
+<ul>
+  <li><strong>Kendala:</strong> Adjacency OSPF tidak mencapai FULL.</li>
+  <li><strong>Analisis:</strong> Ketidakcocokan MTU interface antara Router Utama dan Router B.</li>
+  <li><strong>Solusi:</strong> Samakan nilai MTU atau tambahkan <code>ip ospf mtu-ignore</code> pada interface yang bermasalah.</li>
+</ul>

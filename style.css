@@ -279,6 +279,35 @@ a:hover {
   margin: 1rem 0;
   border: 1px solid var(--border-binder);
 }
+
+/* ========== TABEL RESPONSIF (horizontal scroll) ========== */
+.konten-jurnal table,
+#mode-indeks table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+/* Optional: mempercantik border dan padding */
+.konten-jurnal table th,
+.konten-jurnal table td,
+#mode-indeks table th,
+#mode-indeks table td {
+  border: 1px solid var(--border-binder);
+  padding: 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.konten-jurnal table th,
+#mode-indeks table th {
+  background-color: var(--accent-soft);
+  font-weight: 600;
+}
+
 .konten-jurnal p {
   margin-bottom: 1rem;
 }

@@ -1,0 +1,73 @@
+<h2>Setup Gateway &amp; Keamanan Jaringan<br>MikroTik</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Dipelajari pada: 4 Juni 2026 | Kategori: #MikroTik #Networking #Gateway</p>
+
+<h3>📌 Deskripsi Proyek</h3>
+<p>Membangun jaringan gateway fungsional pada RouterBoard MikroTik lewat Winbox. Konfigurasi mencakup setup IPv4 address, aktivasi dan manajemen WLAN interface untuk akses wireless, implementasi Firewall NAT agar jaringan lokal terhubung ke internet, konfigurasi DNS dan DHCP Server, serta pengujian stabilitas koneksi via terminal.</p>
+
+<blockquote>
+<p><strong>📌 Dokumentasi Hak Cipta:</strong><br>
+Seluruh konfigurasi, skema pengalamatan IP, dan log pengujian laboratorium ini diverifikasi secara nyata pada perangkat MikroTik oleh <strong>Fatahilah Miftahul Rahman</strong>.</p>
+<p><em>Dilarang keras memodifikasi atau menyalin tanpa izin.</em></p>
+</blockquote>
+
+<h3>🛠️ Informasi Perangkat &amp; Sistem</h3>
+<ul>
+  <li><strong>Perangkat / Hardware:</strong> RB951Ui-2HnD (Architecture: mipsbe)</li>
+  <li><strong>Versi Firmware / RouterOS:</strong> v6.49.6 (WinBox 64bit)</li>
+  <li><strong>Identitas Router (Identity):</strong> Mk Fatah</li>
+  <li><strong>Sesi Akses (MAC Address):</strong> 64:D1:54:D4:94:81</li>
+</ul>
+
+<h3>🗺️ Bukti Konfigurasi &amp; Topologi WinBox</h3>
+<img src="https://cdn.jsdelivr.net/gh/fatahilah-tkj/portofolio@main/assets/lab-archive/mikrotik/Mikrotik-01.webp" alt="Konfigurasi Mikrotik di Winbox" />
+
+<h3>📊 Skema Pengalamatan Jaringan (Address List)</h3>
+<table border="1" cellpadding="4" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr bgcolor="#e3ebf5">
+      <th>Interface</th>
+      <th>IP Address / Prefix</th>
+      <th>Network</th>
+      <th>Keterangan / Fungsi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ether1-WAN</td><td>192.168.0.105/24</td><td>192.168.0.0</td><td>Jalur Dynamic (D) / Gateway ke Internet</td></tr>
+    <tr><td>ether2-LAN</td><td>192.168.10.1/26</td><td>192.168.10.0</td><td>Jalur Jaringan Lokal Kabel (LAN)</td></tr>
+    <tr><td>ether2-WLAN</td><td>192.168.20.1/25</td><td>192.168.20.0</td><td>Jalur Jaringan Nirkabel (WLAN / Wi-Fi)</td></tr>
+  </tbody>
+</table>
+<p><em>Catatan Teknis:</em> Jaringan <code>ether2-LAN</code> menggunakan subnet mask /26 (Maksimal 62 host). <code>wlan1-WLAN</code> menggunakan /25 (Maksimal 126 host).</p>
+
+<h3>💻 Parameter Konfigurasi Inti (WinBox &amp; CLI)</h3>
+<h4>1. Firewall NAT (Network Address Translation)</h4>
+<p>Agar seluruh segmen IP lokal (<code>192.168.10.0/26</code> dan <code>192.168.20.0/25</code>) bisa terhubung ke internet:</p>
+<ul>
+  <li><strong>Chain:</strong> srcnat</li>
+  <li><strong>Out. Interface:</strong> ether1-WAN</li>
+  <li><strong>Action:</strong> masquerade</li>
+</ul>
+<h4>2. Layanan DHCP Server &amp; Pool</h4>
+<ul>
+  <li><strong>dhcp1:</strong> interface <code>ether2-LAN</code>, pool <code>dhcp_pool0</code>, Lease Time 00:10:00.</li>
+  <li><strong>dhcp2:</strong> interface <code>wlan1-WLAN</code>, pool <code>dhcp_pool1</code>, Lease Time 00:10:00.</li>
+</ul>
+
+<h3>🧪 Dokumentasi Hasil Pengujian (Verification)</h3>
+<h4>1. Pengujian Konektivitas Internet dari Router (Ping 8.8.8.8)</h4>
+<pre><code>[fatah@Mk Fatah] &gt; ping 8.8.8.8
+sent=10 received=10 packet-loss=0%</code></pre>
+
+<h4>2. Klien Terhubung ke Wi-Fi tapi Sering Terputus (RTO Tinggi)</h4>
+<ul>
+  <li><strong>Kendala:</strong> Perangkat klien di <code>wlan1-WLAN</code> tidak stabil, RTT tinggi hingga timeout.</li>
+  <li><strong>Analisis:</strong> Signal Strength lemah, interferensi frekuensi karena kanal padat.</li>
+  <li><strong>Solusi:</strong> Ganti frekuensi dari <code>auto</code> ke kanal lebih sepi setelah wireless scan, optimasi band ke <code>2GHz-only-N</code>, matikan protokol wireless tidak perlu.</li>
+</ul>
+
+<h4>3. Klien LAN Tidak Mendapatkan IP Otomatis dari DHCP Server</h4>
+<ul>
+  <li><strong>Kendala:</strong> Klien di <code>ether2-LAN</code> mendapat IP APIPA (169.254.x.x).</li>
+  <li><strong>Analisis:</strong> Status dhcp1 invalid karena interface <code>ether2-LAN</code> salah dimasukkan ke bridge.</li>
+  <li><strong>Solusi:</strong> Keluarkan <code>ether2-LAN</code> dari bridge, arahkan DHCP Server langsung ke port fisik. Setelah diperbaiki, klien mendapat IP <code>192.168.10.0/26</code>.</li>
+</ul>
