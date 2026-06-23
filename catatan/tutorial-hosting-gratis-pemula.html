@@ -1,0 +1,160 @@
+<h2>🌐 Panduan Hosting Website Statis<br>(Untuk Pemula)</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Dipelajari pada: 23 Juni 2026 | Kategori: #Hosting #Pemula #Tutorial</p>
+
+<h3>📌 Apa Itu Hosting?</h3>
+<p>Hosting adalah tempat menyimpan file website (HTML, CSS, gambar) agar bisa diakses oleh orang lain lewat internet. Analoginya: hosting itu seperti <strong>tanah tempat rumah berdiri</strong>, sedangkan website adalah rumahnya. Tanpa hosting, website hanya bisa dilihat di komputer Anda sendiri.</p>
+
+<p>Untungnya, ada banyak layanan yang menyediakan hosting <strong>gratis</strong> untuk website statis (website yang hanya terdiri dari file HTML/CSS/JS, tanpa database atau server rumit). Berikut panduan memilih dan menggunakannya.</p>
+
+<hr>
+
+<h3>💡 Pertama: Siapkan File Website Anda</h3>
+<p>Sebelum memilih hosting, pastikan file website Anda sudah siap. Untuk website statis, minimal Anda punya:</p>
+<ul>
+  <li><code>index.html</code> (halaman utama)</li>
+  <li><code>style.css</code> (gaya visual)</li>
+  <li><code>script.js</code> (logika interaktif)</li>
+</ul>
+<p>File-file ini bisa disimpan dalam satu folder. Jika Anda menggunakan <strong>build script</strong> (seperti <code>npm run build</code>), hasil build-nya biasanya ada di folder <code>dist/</code> atau <code>build/</code>.</p>
+
+<hr>
+
+<h3>🏆 5 Pilihan Hosting Gratis Terbaik (Untuk Pemula)</h3>
+
+<h4>1. Vercel ⚡</h4>
+<p><strong>Cocok untuk:</strong> Pemula yang ingin auto-deploy dari GitHub dan butuh preview link untuk setiap perubahan.</p>
+<p><strong>Kelebihan:</strong></p>
+<ul>
+  <li>Proses deploy sangat cepat (tinggal klik, selesai).</li>
+  <li>Dapat preview link otomatis untuk setiap commit.</li>
+  <li>Support berbagai framework (Next.js, React, Vue, dll).</li>
+</ul>
+<p><strong>Langkah (sederhana):</strong></p>
+<ol>
+  <li>Buat akun di <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">vercel.com</a> (pakai akun GitHub).</li>
+  <li>Klik <strong>Add New → Project</strong>, pilih repository GitHub yang berisi kode website Anda.</li>
+  <li>Vercel akan otomatis mendeteksi framework. Klik <strong>Deploy</strong>.</li>
+  <li>Setelah selesai, Anda akan mendapat URL seperti <code>namaproject.vercel.app</code>.</li>
+</ol>
+
+<h4>2. Netlify 🚀</h4>
+<p><strong>Cocok untuk:</strong> Pemula yang ingin deploy dengan <strong>drag-and-drop</strong> (tanpa GitHub) atau dari folder.</p>
+<p><strong>Kelebihan:</strong></p>
+<ul>
+  <li>Bisa upload folder website langsung dari browser (seret folder ke halaman Netlify).</li>
+  <li>Auto-deploy dari GitHub juga tersedia.</li>
+  <li>Ada form handling gratis (untuk website kontak).</li>
+</ul>
+<p><strong>Langkah (drag-and-drop):</strong></p>
+<ol>
+  <li>Login ke <a href="https://netlify.com" target="_blank" rel="noopener noreferrer">netlify.com</a>.</li>
+  <li>Di dashboard, seret folder website Anda ke area yang bertuliskan <strong>Drag your site folder here</strong>.</li>
+  <li>Tunggu beberapa detik, website langsung live di <code>namaproject.netlify.app</code>.</li>
+</ol>
+
+<h4>3. GitHub Pages 🐙</h4>
+<p><strong>Cocok untuk:</strong> Pemula yang sudah punya akun GitHub dan ingin hosting tanpa build script.</p>
+<p><strong>Kelebihan:</strong></p>
+<ul>
+  <li>Gratis tanpa batasan bandwidth.</li>
+  <li>Mendukung custom domain gratis.</li>
+</ul>
+<p><strong>Langkah:</strong></p>
+<ol>
+  <li>Buat repository dengan nama <code>username.github.io</code> (ganti <code>username</code> dengan nama GitHub Anda).</li>
+  <li>Upload semua file website ke repository tersebut.</li>
+  <li>Buka <strong>Settings → Pages</strong>, pilih branch <code>main</code>, lalu klik <strong>Save</strong>.</li>
+  <li>Website akan live di <code>https://username.github.io</code>.</li>
+</ol>
+
+<h4>4. Cloudflare Pages ☁️</h4>
+<p><strong>Cocok untuk:</strong> Pemula yang menginginkan kecepatan akses tinggi (karena CDN Cloudflare).</p>
+<p><strong>Kelebihan:</strong></p>
+<ul>
+  <li>Mendukung build otomatis dari Git.</li>
+  <li>SSL gratis dan custom domain.</li>
+</ul>
+<p><strong>Langkah:</strong></p>
+<ol>
+  <li>Login ke <a href="https://pages.cloudflare.com" target="_blank" rel="noopener noreferrer">pages.cloudflare.com</a>.</li>
+  <li>Klik <strong>Create a project → Connect to Git</strong>.</li>
+  <li>Pilih repository, atur Build Command (jika ada) dan Output Directory.</li>
+  <li>Klik <strong>Save and Deploy</strong>.</li>
+</ol>
+
+<h4>5. Render 🖥️</h4>
+<p><strong>Cocok untuk:</strong> Pemula yang nantinya ingin upgrade ke hosting dengan backend (Node.js, Python).</p>
+<p><strong>Kelebihan:</strong></p>
+<ul>
+  <li>Support static site dan server-side.</li>
+  <li>Auto-deploy dari Git.</li>
+</ul>
+<p><strong>Langkah:</strong></p>
+<ol>
+  <li>Login ke <a href="https://render.com" target="_blank" rel="noopener noreferrer">render.com</a>.</li>
+  <li>Klik <strong>New + → Static Site</strong>.</li>
+  <li>Hubungkan repository GitHub, atur Build Command dan Publish Directory.</li>
+  <li>Klik <strong>Create Static Site</strong>.</li>
+</ol>
+
+<hr>
+
+<h3>📊 Perbandingan Singkat (Untuk Pemula)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Kemudahan</th>
+      <th>Auto-deploy dari GitHub</th>
+      <th>Drag-and-drop</th>
+      <th>SSL Gratis</th>
+      <th>Custom Domain</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Vercel</strong></td><td>⭐️⭐️⭐️⭐️⭐️</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td></tr>
+    <tr><td><strong>Netlify</strong></td><td>⭐️⭐️⭐️⭐️⭐️</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td><strong>GitHub Pages</strong></td><td>⭐️⭐️⭐️⭐️</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td></tr>
+    <tr><td><strong>Cloudflare Pages</strong></td><td>⭐️⭐️⭐️⭐️</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td></tr>
+    <tr><td><strong>Render</strong></td><td>⭐️⭐️⭐️⭐️</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h3>🧭 Rekomendasi Untuk Pemula</h3>
+<ul>
+  <li><strong>Jika Anda belum punya akun GitHub:</strong> Mulai dengan <strong>Netlify</strong> (drag-and-drop) – paling mudah.</li>
+  <li><strong>Jika sudah punya GitHub dan ingin otomatis update:</strong> Pilih <strong>Vercel</strong> atau <strong>Netlify</strong> (auto-deploy).</li>
+  <li><strong>Jika website Anda sangat sederhana (tanpa build):</strong> <strong>GitHub Pages</strong> adalah pilihan paling stabil dan gratis.</li>
+</ul>
+
+<hr>
+
+<h3>🛠️ Istilah Penting (Untuk Pemula)</h3>
+<ul>
+  <li><strong>Deploy / Deployment:</strong> Proses mengunggah file website ke hosting agar bisa diakses publik.</li>
+  <li><strong>Build Script:</strong> Perintah (misal <code>npm run build</code>) yang mengubah kode sumber menjadi file siap hosting. Jika website Anda hanya HTML/CSS/JS murni, Anda tidak perlu build script.</li>
+  <li><strong>Custom Domain:</strong> Mengganti URL bawaan (misal <code>namaproject.vercel.app</code>) menjadi domain milik sendiri (misal <code>fatahilah.com</code>).</li>
+  <li><strong>SSL:</strong> Pengamanan website agar koneksi aman (ditandai dengan gembok di browser). Semua platform di atas memberikan SSL gratis.</li>
+</ul>
+
+<hr>
+
+<h3>📌 Catatan Penting</h3>
+<ul>
+  <li>Semua platform di atas <strong>gratis</strong> untuk penggunaan pribadi dan proyek kecil.</li>
+  <li>Jika website Anda banyak pengunjung (ribuan per hari), mungkin perlu upgrade ke paket berbayar.</li>
+  <li>Selalu baca dokumentasi resmi masing-masing platform untuk informasi terbaru.</li>
+</ul>
+
+<hr>
+
+<h3>🔗 Sumber Belajar Tambahan</h3>
+<ul>
+  <li><a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer">Dokumentasi Vercel</a></li>
+  <li><a href="https://docs.netlify.com" target="_blank" rel="noopener noreferrer">Dokumentasi Netlify</a></li>
+  <li><a href="https://docs.github.com/en/pages" target="_blank" rel="noopener noreferrer">Dokumentasi GitHub Pages</a></li>
+</ul>
+
+<p><em>Selamat mencoba! 🚀</em></p>

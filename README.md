@@ -1,9 +1,8 @@
-
 # 📓 Field Notes – Jurnal Belajar IT & Showcase Proyek
 
 Ini adalah repositori kode sumber untuk website jurnal belajar pribadi saya di bidang **IT Networking, Web Development, dan System Administration**. Website ini mencatat praktikum harian, konfigurasi jaringan, eksperimen CSS/JS, serta menyimpan tautan ke proyek web latihan eksternal. Dibangun sebagai *personal branding* yang bersih, unik, dan fungsional – cocok untuk rekan sejawat, komunitas developer, maupun rekruter.
 
-> 🔗 Website live: [fatah-journal.vercel.app](https://fatah-journal.vercel.app/)
+> 🔗 Website live: [jurnal.fatahmr.my.id](https://jurnal.fatahmr.my.id/)
 
 ---
 
@@ -138,5 +137,3 @@ Saya seorang teknisi IT yang terus belajar Networking, Web Development, dan otom
 Terima kasih sudah berkunjung!
 
 – Fatahilah Miftahul Rahman
-
-```
