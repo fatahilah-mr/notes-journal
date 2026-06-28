@@ -1,0 +1,113 @@
+<h2>📘 Dokumentasi Teknis & Pengembangan<br>Arifin Prasetyo — Premium Culinary Portfolio</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Dipelajari pada: 28 Juni 2026 | Kategori: #Portofolio #React #TanStack #Cloudflare</p>
+
+<h3>📌 Spesifikasi Umum Proyek</h3>
+<p>Portofolio digital ini dirancang sebagai platform pameran kredensial profesional dan galeri menu kuliner milik <strong>Arifin Prasetyo</strong>. Target utama dari platform ini adalah pemilik bisnis kuliner, hotel bintang, katering berskala besar, serta rekruter industri <em>Food &amp; Beverage</em> (F&amp;B).</p>
+
+<h4>Spesifikasi Lingkungan Produksi</h4>
+<ul>
+  <li><strong>Domain Utama:</strong> <a href="https://arifin.fatahmr.my.id" target="_blank" rel="noopener noreferrer">arifin.fatahmr.my.id</a></li>
+  <li><strong>Infrastruktur Hosting:</strong> Cloudflare Pages (Edge Network)</li>
+  <li><strong>Runtime Environment (Lokal):</strong> Bun (JavaScript/TypeScript Runtime)</li>
+  <li><strong>Metode Rendering:</strong> Client-Side Rendering (CSR) dengan optimasi perayapan bot.</li>
+</ul>
+
+<hr>
+
+<h3>🏗️ Arsitektur Kode &amp; Konvensi Penamaan</h3>
+<p>Proyek ini mengadopsi standar arsitektur berbasis komponen modular dengan pemisahan fungsi yang tegas (<em>Separation of Concerns</em>).</p>
+
+<h4>TanStack File-Based Routing</h4>
+<p>Alih-alih menggunakan sistem routing tradisional berbasis komponen (<code>react-router-dom</code>), proyek ini menerapkan <strong>TanStack Router</strong>. Keuntungannya meliputi:</p>
+<ul>
+  <li><strong>Type-Safety Mutlak:</strong> Memastikan semua rute dan parameter terdeteksi aman sejak masa kompilasi (<em>compile-time</em>).</li>
+  <li><strong>Struktur Berbasis File:</strong> Struktur folder dalam <code>src/routes/</code> mencerminkan hierarki URL secara otomatis:
+    <ul>
+      <li><code>src/routes/__root.tsx</code>: Berfungsi sebagai layout utama pembungkus aplikasi (Navbar, Footer, global state).</li>
+      <li><code>src/routes/index.tsx</code>: Berfungsi sebagai halaman utama (<em>Landing Page</em>) tempat seluruh seksi komponen dimuat.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4>Konvensi Kode</h4>
+<ul>
+  <li><strong>Komponen UI (<code>src/components/</code>):</strong> Ditulis menggunakan ekstensi <code>.tsx</code> dengan konvensi penamaan berkas <code>PascalCase</code> (Contoh: <code>PortfolioGrid.tsx</code>, <code>Certifications.tsx</code>).</li>
+  <li><strong>Styling (<code>src/styles.css</code>):</strong> Menggunakan <strong>Tailwind CSS</strong> untuk utilitas kelas responsif penuh, dipadukan dengan konfigurasi warna tema fine-dining khusus (Deep Maroon <code>#8B0000</code> dan Elegant Gold <code>#D4AF37</code>).</li>
+  <li><strong>Aset Gambar (<code>src/assets/</code>):</strong> Semua gambar bersertifikat dan foto menu dikonversi ke dalam format modern <code>.webp</code> untuk memangkas ukuran berkas tanpa merusak kualitas visual demi kecepatan muat di perangkat ponsel pintar.</li>
+</ul>
+
+<hr>
+
+<h3>⚙️ Logika Komponen Internal (Galeri &amp; Filter)</h3>
+<p>Komponen <code>PortfolioGrid.tsx</code> menangani klasifikasi 14 jenis hidangan secara dinamis menggunakan manajemen <em>state</em> internal React tanpa memicu pemuatan ulang halaman (<em>Zero-Reload</em>).</p>
+
+<pre><code>// Ilustrasi Logika Filter Kategori pada Komponen PortfolioGrid
+const [activeCategory, setActiveCategory] = useState&lt;string&gt;("Semua Menu");
+
+const filteredMenus = activeCategory === "Semua Menu"
+  ? totalMenus
+  : totalMenus.filter(menu => menu.category === activeCategory);</code></pre>
+
+<h4>UX Responsif Perangkat Mobile</h4>
+<p>Untuk memastikan kenyamanan akses sepenuhnya dari layar ponsel pintar:</p>
+<ul>
+  <li>Baris tombol filter kategori menggunakan pembungkus dengan aturan CSS <code>overflow-x: auto; white-space: nowrap;</code> yang mengizinkan interaksi usap (<em>swipe</em>) horizontal yang halus.</li>
+  <li>Grid kartu menu otomatis beralih menjadi struktur satu kolom penuh pada layar berukuran kecil (HP), dan memisahkan diri menjadi multi-kolom secara proporsional saat mendeteksi layar desktop.</li>
+</ul>
+
+<hr>
+
+<h3>📝 Transparansi Rekayasa Instruksi (Master Prompt)</h3>
+<p>Guna menjaga transparansi dan pembuktian kapabilitas rekayasa perangkat lunak tanpa kode (<em>no-code engineering</em>), berikut adalah transkrip perintah final (<em>Master Prompt</em>) yang dieksekusi ke platform AI pembangun (Lovable) untuk menghasilkan basis kode portofolio ini:</p>
+
+<pre><code>Build a premium, high-end chef portfolio website for "Arifin Prasetyo" using Vite, React, and Tailwind CSS with a highly polished, interactive UI/UX matching modern minimalist web standards.
+
+DESIGN SYSTEM &amp; VISUALS:
+- Theme: Luxury Culinary / Fine Dining.
+- Color Palette:
+  * Main Background: #FDFBF7 (Warm cream)
+  * Surfaces/Cards: #FFFFFF (Clean white)
+  * Headings/Titles: #111111 (Deep ink)
+  * Body Text: #2C2C2C (Soft readable ink)
+  * Accents &amp; Brand Color: #8B0000 (Deep maroon/burgundy)
+  * Special Highlight: #D4AF37 (Elegant gold for major award badges)
+- Typography: Use an elegant serif for major headings and clean sans-serif for body text.
+
+COMPONENTS TO BUILD:
+1. FLOATING NAV BAR (Navbar.tsx)
+2. HERO SECTION (Hero.tsx)
+3. HIGHLIGHT BANNER (HighlightBanner.tsx)
+4. CREDENTIALS TIMELINE (Certifications.tsx)
+5. SKILLS INVENTORY SECTION (Skills.tsx)
+6. PORTFOLIO GRID GALLERY (PortfolioGrid.tsx)
+7. PREMIUM CONTACT CARD (ContactCard.tsx)
+8. FOOTER CREDIT (Footer.tsx)</code></pre>
+
+<hr>
+
+<h3>🚀 Analisis Optimasi SEO &amp; Deployment Cloudflare</h3>
+<p>Sebagai aplikasi satu halaman (SPA), proyek ini rentan terhadap kendala indeksasi mesin pencari dan penanganan rute rujukan balik (<em>deep linking</em>). Solusi teknis berikut diimplementasikan langsung pada folder <code>public/</code>:</p>
+
+<h4>Penanganan Error 404 pada Cloudflare Pages via _redirects</h4>
+<p>Secara fisik, server hanya mengenali file <code>index.html</code>. Jika rekruter melakukan penyegaran halaman (<em>refresh</em>) di luar rute utama, server Cloudflare akan melempar error 404. Berkas <code>_redirects</code> menginstruksikan server untuk memetakan seluruh rute kembali ke <code>index.html</code> dengan status sukses 200 OK:</p>
+<pre><code>/*    /index.html   200</code></pre>
+
+<h4>Strategi Perayapan Google Search Console</h4>
+<p>Aset JavaScript hasil kompilasi Vite diloloskan agar dapat dibaca sempurna oleh Googlebot melalui instruksi khusus pada <code>robots.txt</code>:</p>
+<pre><code>User-agent: *
+Allow: /
+Allow: /assets/
+
+Sitemap: https://arifin.fatahmr.my.id/sitemap.xml</code></pre>
+<p>Peta situs dikirimkan dalam format XML terstruktur tunggal (<code>sitemap.xml</code>) yang merujuk pada domain produksi utama dengan prioritas indeksasi penuh (1.0).</p>
+
+<hr>
+
+<h3>📱 Manajemen Pengembangan Berbasis Mobile-First</h3>
+<p>Seluruh siklus pengembangan aplikasi ini—mulai dari proses instalasi dependensi, perbaikan bug logika, manajemen repositori Git (GitHub), hingga pemantauan konsol Google Search Console—dikelola dan dieksekusi secara penuh memanfaatkan <strong>perangkat ponsel pintar (HP)</strong> tanpa ketergantungan pada komputer desktop/laptop.</p>
+<p>Hal ini membuktikan efisiensi alur kerja modern dan kapabilitas <em>Prompt Engineering</em> tingkat lanjut yang fleksibel terhadap keterbatasan perangkat keras.</p>
+
+<hr>
+
+<p><strong>🔗 Website live: <a href="https://arifin.fatahmr.my.id/" target="_blank" rel="noopener noreferrer">arifin.fatahmr.my.id</a></strong></p>
+<p><em>Dokumentasi ini bersifat dinamis dan akan diperbarui seiring perkembangan proyek.</em></p>
