@@ -1,0 +1,178 @@
+<h2>📘 Dokumentasi Website Personal<br>Setia Wati (Kwettiau)</h2>
+<p class="meta-date" style="color: var(--ink-muted);">Dipelajari pada: 30 Juni 2026 | Kategori: #PersonalWebsite #React #TypeScript #Cloudflare</p>
+
+<h3>📌 Ringkasan Proyek</h3>
+<ul>
+  <li><strong>Nama Pemilik:</strong> Setia Wati - akrab dipanggil <strong>Kwettiau</strong></li>
+  <li><strong>Usia:</strong> 18 tahun</li>
+  <li><strong>Latar Belakang:</strong> Lulusan Teknik Komputer dan Jaringan (TKJ) - SMK Patriot Pituruh</li>
+  <li><strong>Tema Visual:</strong> Modern, bersih, dan interaktif dengan sentuhan warna pastel (gradasi pink krem)</li>
+  <li><strong>Domain:</strong> <a href="https://kwettiau.fatahmr.my.id" target="_blank" rel="noopener noreferrer">kwettiau.fatahmr.my.id</a></li>
+  <li><strong>Teknologi Utama:</strong> React (TypeScript), Vite, Tailwind CSS, Lucide Icons, Motion (Framer Motion), Cloudflare Pages</li>
+</ul>
+
+<hr>
+
+<h3>🏗️ Arsitektur Komponen (App.tsx)</h3>
+<p>Proyek ini dibangun sebagai <strong>Single Page Application (SPA)</strong> dengan satu komponen utama <code>App.tsx</code> yang menangani seluruh logika dan tampilan. Berikut rincian arsitektur internalnya:</p>
+
+<h4>State Management (Hooks React)</h4>
+<ul>
+  <li><strong><code>isMenuOpen</code></strong> - mengontrol status buka/tutup menu mobile (drawer).</li>
+  <li><strong><code>activeSection</code></strong> - melacak bagian halaman yang sedang aktif (scroll spy) untuk menyorot tautan navbar.</li>
+  <li><strong><code>isModalOpen</code></strong> - status tampilan modal formulir kontak (email).</li>
+  <li><strong><code>likedTracks</code></strong> - array indeks lagu favorit (default: semua lagu disukai). Pengguna dapat toggle like pada setiap lagu di playlist.</li>
+</ul>
+
+<h4>Fungsi &amp; Event Handlers</h4>
+<ul>
+  <li><strong><code>handleSendEmail()</code></strong> - membuka mail client default dengan subjek dan isi pesan yang telah diisi user (menggunakan protokol <code>mailto:</code>).</li>
+  <li><strong><code>handleSmoothScroll()</code></strong> - navigasi halus antar-section dengan offset navbar (85px) untuk menghindari tertutup.</li>
+  <li><strong><code>handleMouseMoveTilt()</code></strong> - efek tilt 3D pada kartu idola saat kursor bergerak (menggunakan transformasi CSS <code>rotateX/Y</code>).</li>
+  <li><strong><code>handleMouseLeaveTilt()</code></strong> - mengembalikan kartu ke posisi normal saat kursor meninggalkan area.</li>
+</ul>
+
+<h4>Effect (useEffect)</h4>
+<ul>
+  <li><strong>Scroll Spy:</strong> Menggunakan <code>useEffect</code> dengan event listener <code>scroll</code> (passive) untuk memperbarui <code>activeSection</code> sesuai bagian halaman yang sedang dilihat.</li>
+</ul>
+
+<hr>
+
+<h3>🎨 Fitur-Fitur Utama (Interaktif)</h3>
+
+<h4>1. Navigasi &amp; Menu Responsif</h4>
+<ul>
+  <li>Navbar tetap terlihat di atas (<code>fixed</code>) tanpa efek sembunyi/muncul (auto-hide).</li>
+  <li>Menu mobile (drawer) dengan tombol hamburger animasi (3 garis berubah menjadi X).</li>
+  <li>Scroll spy - tautan navbar aktif berubah sesuai bagian halaman yang sedang dilihat.</li>
+</ul>
+
+<h4>2. Hero Section dengan Profil</h4>
+<ul>
+  <li>Foto profil menggunakan komponen <code>LazyImage</code> (lazy loading) untuk performa optimal.</li>
+  <li>Badge "IT Student &amp; Designer", nama <strong>Setia Wati</strong>, dan panggilan <strong>Kwettiau</strong>.</li>
+  <li>Tombol CTA: "Hubungi Saya" (buka modal email) dan "Tentang Saya" (scroll ke bagian tentang).</li>
+</ul>
+
+<h4>3. About &amp; Biodata</h4>
+<ul>
+  <li>Paragraf perkenalan tentang latar belakang TKJ, hobi menulis, dan seni kuliner.</li>
+  <li>Tabel biodata (umur, pendidikan, hobi, domisili) dengan gaya bersih.</li>
+</ul>
+
+<h4>4. Keahlian IT (Skills)</h4>
+<ul>
+  <li>Daftar badge keahlian: Networking Setup, Cisco Packet Tracer, Hardware &amp; LAN Troubleshooting.</li>
+  <li>Menggunakan ikon <code>Award</code> dari Lucide.</li>
+</ul>
+
+<h4>5. Idola (Favorites) dengan Efek 3D Tilt</h4>
+<ul>
+  <li>Tiga kartu idola: <strong>Chen Zhe Yuan</strong> (aktor), <strong>Park Ji-Sung</strong> (NCT Dream), <strong>Harry Vaughan</strong> (aktor/model Indonesia).</li>
+  <li>Setiap kartu memiliki efek tilt interaktif saat hover (menggunakan <code>onMouseMove</code> dan <code>onMouseLeave</code>).</li>
+  <li>Gambar menggunakan lazy loading, dilengkapi tag kategori (misal "Aktor &amp; Model", "Idol K-Pop").</li>
+</ul>
+
+<h4>6. Playlist Lagu Favorit (Interaktif)</h4>
+<ul>
+  <li>Daftar 4 lagu dari file <code>playlist.ts</code>: <em>My First and Last</em>, <em>Chewing Gum</em>, <em>Double Take</em>, <em>Beautiful</em>.</li>
+  <li>Tombol <strong>Like (❤️)</strong> pada setiap lagu - state disimpan di <code>likedTracks</code> (toggle).</li>
+  <li>Lagu yang disukai ditandai dengan warna aksen rose dan ikon terisi.</li>
+</ul>
+
+<h4>7. Modal Kontak (Email)</h4>
+<ul>
+  <li>Form dengan tiga input: Nama, Subjek, dan Isi Pesan.</li>
+  <li>Menggunakan <code>mailto:</code> untuk membuka aplikasi email default pengguna.</li>
+  <li>Tombol kirim dengan ikon <code>Send</code>.</li>
+</ul>
+
+<h4>8. Lazy Loading Gambar</h4>
+<ul>
+  <li>Komponen kustom <code>LazyImage.tsx</code> memuat gambar hanya saat mendekati viewport (menggunakan Intersection Observer).</li>
+  <li>Meningkatkan kecepatan muat awal (FCP) dan menghemat bandwidth.</li>
+</ul>
+
+<hr>
+
+<h3>📁 Struktur Folder Proyek</h3>
+<pre><code>root/
+├── public/
+│   ├── robots.txt          # Konfigurasi perayapan mesin pencari
+│   ├── robot.txt           # Duplikat pendukung SEO
+│   ├── sitemap.xml         # Peta situs untuk Google Search Console
+│   └── _redirects          # Aturan SPA redirect untuk Cloudflare Pages
+├── src/
+│   ├── assets/             # Gambar dan aset audio (.mp3)
+│   ├── components/
+│   │   └── LazyImage.tsx   # Komponen lazy loading gambar
+│   ├── data/
+│   │   └── playlist.ts     # Daftar lagu favorit
+│   ├── App.tsx             # Komponen utama (layout, state, logika)
+│   ├── index.css           # Styling kustom + Tailwind CSS
+│   ├── main.tsx            # Entry point React
+│   └── types.ts            # Definisi tipe TypeScript global
+├── index.html              # HTML utama (meta tag SEO)
+├── package.json            # Dependensi dan skrip npm
+├── vite.config.ts          # Konfigurasi build Vite
+└── DOCUMENTATION.md        # Dokumentasi teknis proyek
+</code></pre>
+
+<hr>
+
+<h3>🔍 Optimasi SEO &amp; Deployment Cloudflare</h3>
+
+<h4>1. Meta Tag di <code>index.html</code></h4>
+<pre><code>&lt;meta name="description" content="Setia Wati (Kwettiau) - Lulusan Teknik Komputer dan Jaringan (TKJ) SMK Patriot Pituruh berusia 18 tahun. Temukan petualangan hidup saya di bidang teknologi, karya tulis, dan kreasi kuliner." /&gt;</code></pre>
+
+<h4>2. <code>robots.txt</code></h4>
+<pre><code>User-agent: *
+Allow: /
+
+Sitemap: https://kwettiau.fatahmr.my.id/sitemap.xml</code></pre>
+
+<h4>3. <code>sitemap.xml</code></h4>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://kwettiau.fatahmr.my.id/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-06-30&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+
+<h4>4. Penanganan SPA Redirect (<code>_redirects</code>)</h4>
+<p>Mencegah error 404 saat refresh di rute selain <code>/</code> dengan aturan:</p>
+<pre><code>/*    /index.html   200</code></pre>
+
+<hr>
+
+<h3>☁️ Deployment ke Cloudflare Pages</h3>
+<ul>
+  <li><strong>Metode:</strong> Hubungkan ke repositori GitHub (auto-deploy setiap push).</li>
+  <li><strong>Build Command:</strong> <code>npm run build</code></li>
+  <li><strong>Output Directory:</strong> <code>dist</code></li>
+  <li><strong>Framework Preset:</strong> Vite</li>
+</ul>
+
+<hr>
+
+<h3>📱 Prinsip Mobile-First</h3>
+<p>Seluruh proses pengembangan-mulai dari instalasi dependensi, penulisan kode, debugging, hingga deployment-dikelola sepenuhnya dari perangkat seluler (HP) tanpa komputer desktop. Ini membuktikan fleksibilitas alur kerja modern dan efisiensi <em>prompt engineering</em> tingkat lanjut.</p>
+
+<hr>
+
+<h3>📝 Catatan Perbaikan Terakhir</h3>
+<ul>
+  <li>Penambahan file <code>robots.txt</code>, <code>robot.txt</code>, dan <code>sitemap.xml</code> untuk optimasi Google Search Console.</li>
+  <li>Pembuatan <code>_redirects</code> untuk mencegah error 404 pada SPA di Cloudflare Pages.</li>
+  <li>Navbar fixed (tanpa auto-hide) untuk kemudahan navigasi.</li>
+  <li>Validasi build dengan <code>tsc --noEmit</code> dan <code>npm run build</code> - status sukses 100%.</li>
+</ul>
+
+<hr>
+
+<p><strong>🔗 Website live: <a href="https://kwettiau.fatahmr.my.id/" target="_blank" rel="noopener noreferrer">kwettiau.fatahmr.my.id</a></strong></p>
+<p><em>Dokumentasi ini bersifat dinamis dan akan diperbarui seiring perkembangan proyek.</em></p>
